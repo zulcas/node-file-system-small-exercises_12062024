@@ -8,10 +8,17 @@
  * @param {string} textToReplace Texto a reemplazar     
  */
 
+const fs = require('fs');
+
 function replaceTextInFile(htmlFilePath, textToSearch, textToReplace) {
+    //Leemos fichero
+    let finalFileContent = fs.readFileSync(htmlFilePath, 'utf-8');
+    let htmlResult = finalFileContent.replaceAll(textToSearch, textToReplace);
+    //Creamos fichero write
+    fs.writeFileSync('./result.html', htmlResult);
 
 }
 
 replaceTextInFile("./index.html", "FFC371", "ADD8E6");
-//replaceTextInFile("./index.html", "Aaron", "Caballero Oscuro");
-//replaceTextInFile("./index.html", "El Horno de Leña", "La Pizzería Feliz");
+replaceTextInFile("./index.html", "Aaron", "Caballero Oscuro");
+replaceTextInFile("./index.html", "El Horno de Leña", "La Pizzería Feliz");
